@@ -1,0 +1,50 @@
+{
+	"name": "service_dashboard",
+	"version": "1.0.1",
+	"description": "Service Dashboard Client",
+	"main": "main.js",
+	"scripts": {
+		"test": "yarn lint",
+		"lint": "eslint *.js",
+		"lint:fix": "eslint --fix *.js",
+		"start": "electron .",
+		"pack": "electron-builder --dir",
+		"dist:win": "electron-builder --win --x64 --ia32",
+		"dist:win32": "electron-builder --win --ia32",
+		"dist:win64": "electron-builder --win --x64",
+		"postinstall": "electron-builder install-app-deps"
+	},
+	"author": "BigBrainAFK",
+	"license": "MIT",
+	"devDependencies": {
+		"electron": "^7.1.7",
+		"electron-builder": "^21.2.0",
+		"eslint": "^6.8.0"
+	},
+	"engines": {
+		"node": ">=10.0.0"
+	},
+	"build": {
+		"productName": "Service Dashboard",
+		"appId": "service.dashboard",
+		"win": {
+			"icon": "resources/assets/build/win/icon.ico"
+		},
+		"nsis": {
+			"artifactName": "${productName} Setup ${version}.${ext}",
+			"perMachine": true
+		},
+		"files": [
+			"**/*",
+			"!dist/*",
+			"!dist_old/*"
+		],
+		"directories": {
+			"buildResources": "resources/assets/*",
+			"output": "dist"
+		},
+		"extraFiles": [
+			"resources/assets/images/*.png"
+		]
+	}
+}
